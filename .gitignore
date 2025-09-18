@@ -1,0 +1,181 @@
+# -------------------------
+# Python / virtual env
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+.Python
+.python-version
+.venv/
+venv/
+ENV/
+env/
+pip-wheel-metadata/
+
+# Poetry / PDM / Hatch (if you use them)
+.poetry/
+.pdm.toml
+.pdm-python
+.pdm-venv/
+.hypothesis/
+
+# -------------------------
+# Jupyter / notebooks
+# -------------------------
+.ipynb_checkpoints/
+*.ipynb_convert/
+# Jupyter autosave
+*.nbconvert.ipynb
+# Large notebook metadata caches
+.profile_default/
+.ipython/
+
+# -------------------------
+# OS / Editor junk
+# -------------------------
+.DS_Store
+.DS_Store?
+Icon?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.iml
+
+# -------------------------
+# Credentials / configs
+# -------------------------
+*.env
+*.env.*
+.envrc
+*.secret*
+secrets.*
+*.key
+*.pem
+*.p12
+
+# -------------------------
+# Logs / caches / temp
+# -------------------------
+*.log
+logs/
+.cache/
+__cache__/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# -------------------------
+# Project data layout
+# -------------------------
+# Raw/large data downloads & scratch working dirs
+data/*
+downloads/
+scratch/
+cache/
+tiles/
+
+# Keep small curated samples if you add them later:
+!data/README.md
+!data/sample_*.csv
+
+# -------------------------
+# Geospatial heavy files
+# -------------------------
+# Rasters & companions
+*.tif
+*.tiff
+*.tif.aux.xml
+*.ovr
+*.tfw
+*.prj
+*.aux.xml
+*.wld
+
+# Vector sidecars / big vectors
+*.gpkg
+*.gpkg-shm
+*.gpkg-wal
+*.shp
+*.shx
+*.dbf
+*.cpg
+*.qix
+*.sqlite
+*.geobuf
+*.gpkg-journal
+
+# Compressed geodata archives
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.gz
+
+# -------------------------
+# Tabular / model outputs
+# -------------------------
+# Parquet (often big) — keep CSVs instead
+*.parquet
+# Feather/Arrow
+*.feather
+*.arrow
+# Model artifacts
+*.joblib
+*.pkl
+*.pickle
+
+# Allow lightweight CSV metrics/diagnostics in outputs/
+outputs/*.parquet
+
+# -------------------------
+# Project-specific artifacts to KEEP
+# -------------------------
+# Blog/package assets you want in git:
+levantsites_blog_package/
+!levantsites_blog_package/README.md
+!levantsites_blog_package/assets/
+# Keep common asset types:
+!levantsites_blog_package/assets/*.png
+!levantsites_blog_package/assets/*.jpg
+!levantsites_blog_package/assets/*.jpeg
+!levantsites_blog_package/assets/*.svg
+!levantsites_blog_package/assets/*.gif
+# Keep the Folium map HTML for sharing:
+!levantsites_blog_package/assets/*.html
+# Keep metrics text file:
+!levantsites_blog_package/assets/*.txt
+
+# If you store figures outside the package:
+figs/
+!figs/*.png
+!figs/*.svg
+!figs/*.jpg
+!figs/README.md
+
+# -------------------------
+# Notebooks & reports
+# -------------------------
+# Track your main notebooks but ignore big checkpointed ones above.
+# If you export to HTML/PDF locally, ignore those:
+# *.html
+*.pdf
+# …except the Folium map you explicitly want to keep in assets
+!levantsites_blog_package/assets/*.html
+
+# -------------------------
+# Optional: lock files (uncomment if you prefer to ignore)
+# -------------------------
+# poetry.lock
+# requirements.txt.lock

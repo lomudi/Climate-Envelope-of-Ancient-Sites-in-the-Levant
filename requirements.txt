@@ -1,0 +1,24 @@
+# ===== Core (required) =====
+pandas>=2.2
+numpy>=1.26
+geopandas>=1.0
+shapely>=2.0
+pyproj>=3.6
+rasterio>=1.3
+rioxarray>=0.15
+xarray>=2024.2.0
+scikit-learn>=1.4
+matplotlib>=3.8
+tqdm>=4.66
+pyarrow>=14.0
+folium>=0.16
+branca>=0.7
+
+# ===== Optional (nice-to-have) =====
+# contextily is handy for basemaps, not required by the notebook as-is
+contextily>=1.4
+
+# ===== Notes =====
+# If you encounter GDAL/GEOS install issues on macOS/Windows, consider using conda-forge:
+#   conda create -n levantenv -c conda-forge python=3.11 geopandas rioxarray rasterio xarray scikit-learn matplotlib tqdm pyarrow pandas numpy
+# Then activate and 'pip install -r requirements.txt' for any remaining pip-only deps.

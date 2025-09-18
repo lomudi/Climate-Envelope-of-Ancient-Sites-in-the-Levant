@@ -1,0 +1,4 @@
+AUC=0.953
+AP=0.593
+Prevalence=0.0909
+Brier=0.0567

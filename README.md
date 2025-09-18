@@ -4,13 +4,32 @@ _A quick, reproducible map of the South Levant's "good places"_
 
 ## Project goals
 
-Archaeologists have long observed that ancient settlements cluster along the Mediterranean climatic belt and near perennial water. This project turns that intuition into a transparent, open workflow that anyone can reproduce in an afternoon. The aims are to:
+Archaeologists have long observed that ancient settlements cluster along the Mediterranean climatic belt and near perennial water. This repository turns that intuition into a transparent, open workflow that anyone can reproduce in an afternoon. The aims are to:
 
 - build a small, explainable presence–background model that links known site locations to open climate, terrain, and hydrography data;
 - generate a suitability surface that can guide field planning, highlight survey targets, and spark discussions about where to look next; and
 - document every step so other researchers can adapt, critique, and extend the analysis for their own regions or periods.
 
-The resulting gradient boosting model was trained on 65 known sites and 650 random background points inside 29.0–34.8°N, 34.0–37.6°E. Features include eight environmental variables from WorldClim and Natural Earth, and evaluation relied on spatial cross-validation with 0.25° tiles to control for spatial leakage. Current performance (out-of-fold): **AUC 0.953**, **Average Precision 0.593**, **Brier 0.0567** at a prevalence of 0.091.
+## The idea (and why it is useful)
+
+Sites concentrate along Mediterranean belts and river corridors. The project provides a reproducible baseline you can run quickly, explain to colleagues, and turn into a map that supports survey-day planning. The focus is on clarity and speed so teams can use the workflow as a starting point for their own questions.
+
+## What was built
+
+A presence–background model trained on 65 site locations and 650 random background points inside 29.0–34.8°N, 34.0–37.6°E. Eight environmental variables drawn from open datasets (WorldClim and Natural Earth) feed a compact Gradient Boosting classifier. Spatial leakage is controlled with 0.25° grouped tiles and out-of-fold evaluation.
+
+### Performance snapshot
+
+- **AUC:** 0.953
+- **Average Precision:** 0.593
+- **Brier score:** 0.0567
+- **Prevalence:** 0.091
+
+## Explore the map
+
+Open the interactive suitability surface and zoom around river valleys and coastal plains—bright areas are where the model expects higher suitability for undiscovered sites.
+
+- Interactive map: [open `map_v2_suitability.html`](outputs/map_v2_suitability.html) (download and open locally if the link does not render inline).
 
 ## Repository contents
 
@@ -49,13 +68,33 @@ The resulting gradient boosting model was trained on 65 known sites and 650 rand
    - Double-click `outputs/map_v2_suitability.html` to open the interactive suitability map in your browser.
    - Review `outputs/metrics_v2.txt` for performance numbers and `outputs/feature_importance_v2.csv` for model interpretability.
 
-## How to use the outputs
+## How it works (in plain English)
 
-- **Field planning**: treat the suitability scores as triage. Adjust the classification threshold to match your time and survey budget (≈0.20 produced a practical precision/recall balance during development).
-- **Team discussions**: compare the "bright" areas on the map with expert priors; disagreements often reveal missing knowledge or data gaps.
-- **Local adaptations**: swap in your own site coordinates or restrict the area of interest to focus on specific valleys or periods.
+- **Presence–background 101**: because we lack true absences, the model contrasts known sites with random background points to learn what distinguishes them. The output is a relative suitability score.
+- **Spatial cross-validation**: nearby points share environmental context, so random splits inflate metrics. Grouped 0.25° tiles ensure each fold holds out entire tiles to keep evaluation honest.
+- **A tiny model, on purpose**: median imputation plus Gradient Boosting keeps the workflow fast, explainable, and transparent—no heavyweight tuning required.
 
-## Extending or reproducing the study
+## What drives the predictions
+
+- Temperature seasonality (BIO4) and precipitation seasonality (BIO15) provide the strongest signals.
+- Annual precipitation (BIO12) refines the moisture gradient that tracks coastal-to-inland change.
+- Distance to rivers pulls suitability downward quickly as you move away from perennial water sources.
+- Elevation and slope sharpen local contrasts, while distance to coast mostly echoes the west–east moisture gradient.
+
+## How to use this in the field
+
+- Treat the scores as triage: start in bright zones and adjust the threshold to match time and budget (≈0.20 balanced precision and recall during development).
+- Overlay your own visibility constraints, permissions, and logistics to focus the search.
+- Compare the map with your team’s expert priors—disagreements are prompts for learning and targeted survey.
+
+## What I learned (and what is missing)
+
+- **Calibration matters**: presence–background design requires prior correction and calibration; incorporating isotonic calibration is on the roadmap.
+- **Sampling bias is real**: uniform backgrounds ignore where archaeologists have actually looked. Bias- or target-group backgrounds are next experiments.
+- **Hydrology resolution**: Natural Earth rivers are coarse; higher-resolution hydro data in subregions should sharpen predictions.
+- **Time matters**: sites span many periods. Period-specific models and temporal holdouts are priority follow-ups.
+
+## Reproduce or extend it
 
 The notebook is designed to be modified. Helpful entry points include:
 

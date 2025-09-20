@@ -124,7 +124,7 @@ Contributions are welcome! To propose an enhancement or report an issue:
 
 ## License
 
-The project is intended for open-source release. A specific license will be finalised before publication; until then, please contact the maintainers if you plan to reuse the code or data beyond personal research.
+The project is open-source.Pplease contact the maintainers if you plan to reuse the code or data beyond personal research.
 
 ## Roadmap
 
